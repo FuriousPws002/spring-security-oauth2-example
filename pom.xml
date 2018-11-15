@@ -31,6 +31,7 @@
     <modules>
         <module>oauth2-authorization-server</module>
         <module>oauth2-resource-server</module>
+        <module>oauth2-client</module>
     </modules>
 
     <dependencyManagement>

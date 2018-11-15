@@ -32,3 +32,12 @@ http://localhost:8080/oauth/token?username=user1&password=123456&grant_type=pass
 
 ## 注意事项
 要实现密码模式，须重写WebSecurityConfigurerAdapter类中authenticationManagerBean方法
+
+----
+## 添加客户端集成示例
+在认证服务和资源服务示例的基础上，添加了客户端集成示例。
+
+更新表数据<br>
+``UPDATE `oauth2`.`oauth_client_details` SET `resource_ids` = NULL, `client_secret` = 'testsecret', `scope` = 'read,write', `authorized_grant_types` = 'authorization_code,refresh_token,implicit,client_credentials,password', `web_server_redirect_uri` = 'https://www.baidu.com,http://localhost:8082,http://localhost:8082/login/oauth2/code/test1,http://localhost:8082/login/oauth2/code/r1', `authorities` = 'ROLE_USER', `access_token_validity` = NULL, `refresh_token_validity` = NULL, `additional_information` = NULL, `autoapprove` = '0' WHERE `client_id` = Cast('testclient' AS Binary(10));``<br>
+``UPDATE `oauth2`.`oauth_client_details` SET `resource_ids` = NULL, `client_secret` = 'testsecret1', `scope` = 'read,write', `authorized_grant_types` = 'authorization_code,refresh_token,implicit,client_credentials,password', `web_server_redirect_uri` = 'https://www.baidu.com,http://localhost:8082,http://localhost:8082/login/oauth2/code/test2,http://localhost:8082/login/oauth2/code/r2', `authorities` = '', `access_token_validity` = NULL, `refresh_token_validity` = NULL, `additional_information` = NULL, `autoapprove` = '0' WHERE `client_id` = Cast('testclient1' AS Binary(11));
+``
